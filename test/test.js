@@ -33,7 +33,7 @@ exports.testInstanceOf = function(test) {
 
 };
 
-exports.testSelfFromInstance = function(test) {
+exports.testSelf = function(test) {
 
     var A = inherit({}),
         B = inherit(A, {});
@@ -44,6 +44,24 @@ exports.testSelfFromInstance = function(test) {
 
 };
 
+exports.testInherit = function(test) {
+
+    var A = inherit({
+        method1 : function() {
+            return 'A';
+        }
+    }),
+    B = inherit(A, {
+        method2 : function() {
+            return 'B';
+        }
+    });
+
+    test.ok(typeof new A().method2 === 'undefined');
+    test.ok(new B().method1() === 'A');
+    test.done();
+
+};
 
 exports.testOverride = function(test) {
 
@@ -63,25 +81,29 @@ exports.testOverride = function(test) {
 
 };
 
-exports.testBaseMethod = function(test) {
+exports.testBase = function(test) {
 
     var A = inherit({
-            method : function() {
+            method1 : function() {
                 return 'A';
             }
         }),
         B = inherit(A, {
-            method : function() {
+            method1 : function() {
                 return this.__base() + 'B';
+            },
+            method2 : function() {
+                return this.__base() + 'B2';
             }
         });
 
-    test.ok(new B().method() === 'AB');
+    test.ok(new B().method1() === 'AB');
+    test.ok(new B().method2() === 'undefinedB2');
     test.done();
 
 };
 
-exports.testStaticBaseMethod = function(test) {
+exports.testStaticBase = function(test) {
 
     var A = inherit({}, {
             staticMethod : function() {
