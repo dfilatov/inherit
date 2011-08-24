@@ -64,6 +64,25 @@ exports.testInherit = function(test) {
 
 };
 
+exports.testStaticInherit = function(test) {
+
+    var A = inherit({}, {
+        method1 : function() {
+            return 'A';
+        }
+    }),
+    B = inherit(A, {}, {
+        method2 : function() {
+            return 'B';
+        }
+    });
+
+    test.equal(typeof A.method2, 'undefined');
+    test.equal(B.method1(), 'A');
+    test.done();
+
+};
+
 exports.testOverride = function(test) {
 
     var A = inherit({
@@ -77,7 +96,27 @@ exports.testOverride = function(test) {
             }
         });
 
+    test.equal(new A().method(), 'A');
     test.equal(new B().method(), 'B');
+    test.done();
+
+};
+
+exports.testStaticOverride = function(test) {
+
+    var A = inherit({}, {
+            method : function() {
+                return 'A';
+            }
+        }),
+        B = inherit(A, {}, {
+            method : function() {
+                return 'B';
+            }
+        });
+
+    test.equal(A.method(), 'A');
+    test.equal(B.method(), 'B');
     test.done();
 
 };
