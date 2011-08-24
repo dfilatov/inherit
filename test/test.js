@@ -48,15 +48,15 @@ exports.testSelf = function(test) {
 exports.testInherit = function(test) {
 
     var A = inherit({
-        method1 : function() {
-            return 'A';
-        }
-    }),
-    B = inherit(A, {
-        method2 : function() {
-            return 'B';
-        }
-    });
+            method1 : function() {
+                return 'A';
+            }
+        }),
+        B = inherit(A, {
+            method2 : function() {
+                return 'B';
+            }
+        });
 
     test.equal(typeof new A().method2, 'undefined');
     test.equal(new B().method1(), 'A');
@@ -67,15 +67,15 @@ exports.testInherit = function(test) {
 exports.testStaticInherit = function(test) {
 
     var A = inherit({}, {
-        method1 : function() {
-            return 'A';
-        }
-    }),
-    B = inherit(A, {}, {
-        method2 : function() {
-            return 'B';
-        }
-    });
+            method1 : function() {
+                return 'A';
+            }
+        }),
+        B = inherit(A, {}, {
+            method2 : function() {
+                return 'B';
+            }
+        });
 
     test.equal(typeof A.method2, 'undefined');
     test.equal(B.method1(), 'A');
