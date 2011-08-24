@@ -16,25 +16,49 @@ exports.testInstanceProperties = function(test) {
     });
 
     test.ok(new A('test').prop == 'test');
+    test.ok(new A('other').prop == 'other');
     test.done();
 
 };
 
 exports.testInstanceOf = function(test) {
 
-    var A = inherit({});
+    var A = inherit({}),
+        B = inherit(A, {});
 
     test.ok(new A() instanceof A);
+    test.ok(new B() instanceof A);
+    test.ok(new B() instanceof B);
     test.done();
 
 };
 
-exports.testInheritedInstanceOf = function(test) {
+exports.testSelfFromInstance = function(test) {
 
     var A = inherit({}),
         B = inherit(A, {});
 
-    test.ok(new B() instanceof A);
+    test.ok(new A().__self === A);
+    test.ok(new B().__self === B);
+    test.done();
+
+};
+
+
+exports.testOverride = function(test) {
+
+    var A = inherit({
+        method : function() {
+            return 'A';
+        }
+    }),
+    B = inherit(A, {
+        method : function() {
+            return 'B';
+        }
+    });
+
+    test.ok(new B().method() === 'B');
     test.done();
 
 };
