@@ -1,0 +1,22 @@
+{
+    "name" : "node-inherit",
+    "version" : "1.0.0",
+    "description" : "Inheritance module for node",
+    "homepage" : "https://github.com/dfilatov/node-inherit",
+    "keywords" : ["inheritance"],
+    "author" : "Dmitry Filatov <dfilatov@yandex-team.ru>",
+    "contributors" : [{
+        "name" : "Dmitry Filatov",
+        "email" : "dfilatov@yandex-team.ru"
+    }],
+    "repository":{
+        "type" : "git",
+        "url" : "http://github.com/dfilatov/node-inherit.git"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "nodeunit" : "0.5.3"
+    },
+    "main" : "index",
+    "engines" : { "node" : ">= 0.4.0" }
+}
