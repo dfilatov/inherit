@@ -20,6 +20,25 @@ exports.testInstanceProperties = function(test) {
 
 };
 
+exports.testInstanceOf = function(test) {
+
+    var A = inherit({});
+
+    test.ok(new A() instanceof A);
+    test.done();
+
+};
+
+exports.testInheritedInstanceOf = function(test) {
+
+    var A = inherit({}),
+        B = inherit(A, {});
+
+    test.ok(new B() instanceof A);
+    test.done();
+
+};
+
 exports.testBaseMethod = function(test) {
 
     var A = inherit({
