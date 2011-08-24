@@ -2,7 +2,7 @@ var inherit = require('../index.js').inherit;
 
 exports.testIsFunction = function(test) {
 
-    test.ok(typeof inherit == 'function');
+    test.equal(typeof inherit, 'function');
     test.done();
 
 };
@@ -15,8 +15,8 @@ exports.testInstanceProperties = function(test) {
         }
     });
 
-    test.ok(new A('test').prop == 'test');
-    test.ok(new A('other').prop == 'other');
+    test.equal(new A('test').prop, 'test');
+    test.equal(new A('other').prop, 'other');
     test.done();
 
 };
@@ -27,6 +27,7 @@ exports.testInstanceOf = function(test) {
         B = inherit(A, {});
 
     test.ok(new A() instanceof A);
+    test.ok(!(new A() instanceof B));
     test.ok(new B() instanceof A);
     test.ok(new B() instanceof B);
     test.done();
@@ -38,8 +39,8 @@ exports.testSelf = function(test) {
     var A = inherit({}),
         B = inherit(A, {});
 
-    test.ok(new A().__self === A);
-    test.ok(new B().__self === B);
+    test.strictEqual(new A().__self, A);
+    test.strictEqual(new B().__self, B);
     test.done();
 
 };
@@ -57,8 +58,8 @@ exports.testInherit = function(test) {
         }
     });
 
-    test.ok(typeof new A().method2 === 'undefined');
-    test.ok(new B().method1() === 'A');
+    test.equal(typeof new A().method2, 'undefined');
+    test.equal(new B().method1(), 'A');
     test.done();
 
 };
@@ -66,17 +67,17 @@ exports.testInherit = function(test) {
 exports.testOverride = function(test) {
 
     var A = inherit({
-        method : function() {
-            return 'A';
-        }
-    }),
-    B = inherit(A, {
-        method : function() {
-            return 'B';
-        }
-    });
+            method : function() {
+                return 'A';
+            }
+        }),
+        B = inherit(A, {
+            method : function() {
+                return 'B';
+            }
+        });
 
-    test.ok(new B().method() === 'B');
+    test.equal(new B().method(), 'B');
     test.done();
 
 };
@@ -97,8 +98,8 @@ exports.testBase = function(test) {
             }
         });
 
-    test.ok(new B().method1() === 'AB');
-    test.ok(new B().method2() === 'undefinedB2');
+    test.equal(new B().method1(), 'AB');
+    test.equal(new B().method2(), 'undefinedB2');
     test.done();
 
 };
@@ -116,7 +117,7 @@ exports.testStaticBase = function(test) {
             }
         });
 
-    test.ok(B.staticMethod() === 'AB');
+    test.equal(B.staticMethod(), 'AB');
     test.done();
 
 };
