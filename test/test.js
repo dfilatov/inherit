@@ -1,4 +1,4 @@
-var inherit = require('../index.js').inherit;
+var inherit = require('..');
 
 exports.testIsFunction = function(test) {
 
