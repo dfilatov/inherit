@@ -1,5 +1,5 @@
 {
-    "name" : "node-inherit",
+    "name" : "inherit",
     "version" : "1.0.0",
     "description" : "Inheritance module for node",
     "homepage" : "https://github.com/dfilatov/node-inherit",
@@ -8,6 +8,10 @@
     "contributors" : [{
         "name" : "Dmitry Filatov",
         "email" : "dfilatov@yandex-team.ru"
+    }, {
+        "name" : "Sergey Belov",
+        "email" : "peimei@ya.ru",
+        "url" : "http://github.com/arikon"
     }],
     "repository":{
         "type" : "git",
