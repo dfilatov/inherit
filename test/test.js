@@ -1,4 +1,4 @@
-var inherit = require('..');
+var inherit = require('..').inherit;
 
 exports.testIsFunction = function(test) {
 
