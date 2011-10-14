@@ -4,4 +4,4 @@
  * MIT Licensed
  */
 
-module.exports = require('./lib/inherit');
+module.exports.inherit = require('inherit');

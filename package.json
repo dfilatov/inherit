@@ -1,6 +1,6 @@
 {
-    "name" : "inherit",
-    "version" : "1.0.0",
+    "name" : "node-inherit",
+    "version" : "1.0.1",
     "description" : "Inheritance module for node",
     "homepage" : "https://github.com/dfilatov/node-inherit",
     "keywords" : ["inheritance"],
@@ -17,7 +17,9 @@
         "type" : "git",
         "url" : "http://github.com/dfilatov/node-inherit.git"
     },
-    "dependencies": {},
+    "dependencies": {
+        "inherit" : ">= 1.0.0"
+    },
     "devDependencies": {
         "nodeunit" : "0.5.3"
     },
