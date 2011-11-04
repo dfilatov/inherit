@@ -9,7 +9,7 @@ Installing
 
 Usage
 ------------
-    inherit([baseClass], props, staticProps);
+    inherit([baseClass], props, [staticProps]);
     
 Example
 ------------
