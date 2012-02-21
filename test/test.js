@@ -34,6 +34,20 @@ exports.testInstanceOf = function(test) {
 
 };
 
+exports.testInstanceOfConstructorResult = function(test) {
+
+    var A = inherit({}),
+        B = inherit({
+            __constructor : function(val) {
+                return new A();
+            }
+        });
+
+    test.ok(new B() instanceof A);
+    test.done();
+
+};
+
 exports.testSelf = function(test) {
 
     var A = inherit({}),
