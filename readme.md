@@ -1,7 +1,6 @@
 Node-inherit
 ============
-
-Inheritance module for node
+This module provides some syntax sugar for "class" declarations, constructors, "super" calls and static members.
 
 Installing
 ------------
