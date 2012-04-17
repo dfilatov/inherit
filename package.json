@@ -1,6 +1,6 @@
 {
     "name" : "inherit",
-    "version" : "1.0.1",
+    "version" : "1.0.2",
     "description" : "Inheritance module for node",
     "homepage" : "https://github.com/dfilatov/node-inherit",
     "keywords" : ["inheritance"],
