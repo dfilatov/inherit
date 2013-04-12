@@ -1,14 +1,11 @@
 var inherit = require('..');
 
 exports.testIsFunction = function(test) {
-
     test.equal(typeof inherit, 'function');
     test.done();
-
 };
 
 exports.testInstanceProperties = function(test) {
-
     var A = inherit({
         __constructor : function(val) {
             this.prop = val;
@@ -18,11 +15,9 @@ exports.testInstanceProperties = function(test) {
     test.equal(new A('test').prop, 'test');
     test.equal(new A('other').prop, 'other');
     test.done();
-
 };
 
 exports.testInstanceOf = function(test) {
-
     var A = inherit({}),
         B = inherit(A, {});
 
@@ -31,11 +26,9 @@ exports.testInstanceOf = function(test) {
     test.ok(new B() instanceof A);
     test.ok(new B() instanceof B);
     test.done();
-
 };
 
 exports.testInstanceOfConstructorResult = function(test) {
-
     var A = inherit({}),
         B = inherit({
             __constructor : function(val) {
@@ -45,22 +38,18 @@ exports.testInstanceOfConstructorResult = function(test) {
 
     test.ok(new B() instanceof A);
     test.done();
-
 };
 
 exports.testSelf = function(test) {
-
     var A = inherit({}),
         B = inherit(A, {});
 
     test.strictEqual(new A().__self, A);
     test.strictEqual(new B().__self, B);
     test.done();
-
 };
 
 exports.testInherit = function(test) {
-
     var A = inherit({
             method1 : function() {
                 return 'A';
@@ -75,11 +64,9 @@ exports.testInherit = function(test) {
     test.equal(typeof new A().method2, 'undefined');
     test.equal(new B().method1(), 'A');
     test.done();
-
 };
 
 exports.testStaticInherit = function(test) {
-
     var A = inherit({}, {
             method1 : function() {
                 return 'A';
@@ -94,11 +81,9 @@ exports.testStaticInherit = function(test) {
     test.equal(typeof A.method2, 'undefined');
     test.equal(B.method1(), 'A');
     test.done();
-
 };
 
 exports.testOverride = function(test) {
-
     var A = inherit({
             method : function() {
                 return 'A';
@@ -113,11 +98,9 @@ exports.testOverride = function(test) {
     test.equal(new A().method(), 'A');
     test.equal(new B().method(), 'B');
     test.done();
-
 };
 
 exports.testStaticOverride = function(test) {
-
     var A = inherit({}, {
             method : function() {
                 return 'A';
@@ -132,11 +115,9 @@ exports.testStaticOverride = function(test) {
     test.equal(A.method(), 'A');
     test.equal(B.method(), 'B');
     test.done();
-
 };
 
 exports.testBase = function(test) {
-
     var A = inherit({
             method1 : function() {
                 return 'A';
@@ -154,11 +135,9 @@ exports.testBase = function(test) {
     test.equal(new B().method1(), 'AB');
     test.equal(new B().method2(), 'undefinedB2');
     test.done();
-
 };
 
 exports.testStaticBase = function(test) {
-
     var A = inherit({}, {
             staticMethod : function() {
                 return 'A';
@@ -172,5 +151,44 @@ exports.testStaticBase = function(test) {
 
     test.equal(B.staticMethod(), 'AB');
     test.done();
+};
 
+exports.testObjectMixin = function(test) {
+    var A = inherit(),
+        M = {
+            methodM : function() {
+                return 'M';
+            }
+        },
+        B = inherit([A, M]);
+
+    test.equal(new B().methodM(), 'M');
+    test.done();
+};
+
+exports.testFunctionMixin = function(test) {
+    var A = inherit(),
+        M = inherit({
+            methodM : function() {
+                return 'M';
+            }
+        }),
+        B = inherit([A, M]);
+
+    test.equal(new B().methodM(), 'M');
+    test.strictEqual(new B().__self, B);
+    test.done();
+};
+
+exports.testFunctionMixinStatic = function(test) {
+    var A = inherit(),
+        M = inherit({}, {
+            staticMethodM : function() {
+                return 'M';
+            }
+        }),
+        B = inherit([A, M]);
+
+    test.equal(B.staticMethodM(), 'M');
+    test.done();
 };
