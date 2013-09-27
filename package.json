@@ -3,7 +3,7 @@
     "version" : "2.1.0",
     "description" : "Inheritance module for node",
     "homepage" : "https://github.com/dfilatov/node-inherit",
-    "keywords" : ["inheritance"],
+    "keywords" : ["class", "prototype", "inheritance", "mixins", "static"],
     "author" : "Dmitry Filatov <dfilatov@yandex-team.ru>",
     "contributors" : [{
         "name" : "Dmitry Filatov",
