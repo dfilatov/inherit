@@ -1,10 +1,21 @@
-Node-inherit
+Inherit
 ============
 This module provides some syntax sugar for "class" declarations, constructors, mixins, "super" calls and static members.
 
-Installing
-----------
+Getting Started
+---------------
+###In Node.js###
+You can install using Node Package Manager (npm):
+
     npm install inherit
+
+###In Browsers###
+```html
+<script type="text/javascript" src="inherit.js"></script>
+```
+It also supports RequireJS module format and [YM module](https://github.com/ymaps/modules) format.
+
+Module has been tested in IE6+, Mozilla Firefox 3+, Chrome 5+, Safari 5+, Opera 10+.
 
 Specification
 -------------
