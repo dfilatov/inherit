@@ -1,15 +1,43 @@
 Node-inherit
 ============
-This module provides some syntax sugar for "class" declarations, constructors, "super" calls and static members.
+This module provides some syntax sugar for "class" declarations, constructors, mixins, "super" calls and static members.
 
 Installing
-------------
+----------
     npm install inherit
 
-Usage
-------------
-    inherit([baseClass], props, [staticProps]);
-    
+Specification
+-------------
+###Creating a base class###
+````js
+Function inherit(Object props);
+````
+###Creating a base class with static properties###
+````js
+Function inherit(
+    Object props,
+    Object staticProps);
+````
+###Creating a derived class###
+````js
+Function inherit(
+    Function BaseClass,
+    Object props,
+    Object staticProps);
+````
+###Creating a derived class with mixins###
+````js
+Function inherit(
+    [
+        Function BaseClass,
+        Function Mixin,
+        Function AnotherMixin,
+        ...
+    ],
+    Object props,
+    Object staticProps);
+````
+
 Example
 ------------
 ```javascript
@@ -55,9 +83,26 @@ var B = inherit(A, /** @lends B.prototype */{
     }
 });
 
+// mixin M
+var M = inherit({
+    getMixedProperty : function() {
+        return 'mixed property';
+    }
+});
+
+// inherited "class" from A with mixin M
+var C = inherit([A, M], {
+    getMixedProperty : function() {
+        return this.__base() + ' from C';
+    }
+});
+
 var instanceOfB = new B('property');
 
 instanceOfB.getProperty(); // returns 'property of instanceB'
 instanceOfB.getType(); // returns 'AB'
 B.staticMethod(); // returns 'staticA of staticB'
+
+var instanceOfC = new C();
+instanceOfC.getMixedProperty() // returns "mixed property from C"
 ```
