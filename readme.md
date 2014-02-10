@@ -1,5 +1,5 @@
-Inherit
-============
+Inherit [![NPM version](https://badge.fury.io/js/inherit.png)](http://badge.fury.io/js/inherit)
+=======
 This module provides some syntax sugar for "class" declarations, constructors, mixins, "super" calls and static members.
 
 Getting Started
