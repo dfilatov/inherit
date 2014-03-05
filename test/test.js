@@ -66,6 +66,22 @@ exports.testInherit = function(test) {
     test.done();
 };
 
+exports.testInheritFromPlaneFunction = function(test) {
+    var A = function(val) {
+            this.prop = val;
+        },
+        B = inherit(A, {
+            __constructor : function() {
+                this.__base('fromB');
+            }
+        });
+
+    test.ok(new B() instanceof A);
+    test.equal(new B().prop, 'fromB');
+    test.done();
+};
+
+
 exports.testStaticInherit = function(test) {
     var A = inherit({}, {
             method1 : function() {
