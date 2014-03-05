@@ -1,7 +1,7 @@
 {
     "name" : "inherit",
-    "version" : "2.1.0",
-    "description" : "Inheritance module for node",
+    "version" : "2.2.0",
+    "description" : "Inheritance module for Node.js and browsers",
     "homepage" : "https://github.com/dfilatov/node-inherit",
     "keywords" : ["class", "prototype", "inheritance", "mixins", "static"],
     "author" : "Dmitry Filatov <dfilatov@yandex-team.ru>",
