@@ -22,5 +22,10 @@
         "nodeunit" : "0.8.0"
     },
     "main" : "index",
-    "engines" : { "node" : ">= 0.4.0" }
+    "engines" : { "node" : ">= 0.4.0" },
+    "enb" : {
+        "sources" : [
+            "lib/inherit.js"
+        ]
+    }
 }
