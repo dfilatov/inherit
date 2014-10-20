@@ -69,7 +69,7 @@ var A = inherit(/** @lends A.prototype */{
     },
 
     getStaticProperty : function() {
-        return this.__self.staticMember; // access to static
+        return this.__self.staticProperty; // access to static
     }
 }, /** @lends A */ {    
     staticProperty : 'staticA',
