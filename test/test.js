@@ -218,3 +218,23 @@ exports.testFunctionMixinStatic = function(test) {
     test.equal(B.staticMethodM(), 'M');
     test.done();
 };
+
+exports.testBaseMocking = function(test) {
+     var A = inherit({
+            m : function() {
+                return 'A';
+            }
+        }),
+        B = inherit(A, {
+            m : function() {
+                return this.__base() + 'B';
+            }
+        });
+
+     B.prototype.m.__base = function() { return 'C'; };
+
+     var b = new B();
+
+     test.equal(b.m(), 'CB');
+     test.done();
+};
