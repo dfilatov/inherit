@@ -13,10 +13,8 @@
         "email" : "peimei@ya.ru",
         "url" : "http://github.com/arikon"
     }],
-    "repository":{
-        "type" : "git",
-        "url" : "http://github.com/dfilatov/node-inherit.git"
-    },
+    "repository": "dfilatov/node-inherit",
+    "license": "MIT",
     "dependencies": {},
     "devDependencies": {
         "nodeunit" : "0.8.0"
