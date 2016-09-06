@@ -1,6 +1,6 @@
 {
     "name" : "inherit",
-    "version" : "2.2.5",
+    "version" : "2.2.6",
     "description" : "Inheritance module for Node.js and browsers",
     "homepage" : "https://github.com/dfilatov/node-inherit",
     "keywords" : ["class", "prototype", "inheritance", "mixins", "static"],
