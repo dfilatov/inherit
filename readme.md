@@ -4,12 +4,12 @@ This module provides some syntax sugar for "class" declarations, constructors, m
 
 Getting Started
 ---------------
-###In Node.js###
+### In Node.js ###
 You can install using Node Package Manager (npm):
 
     npm install inherit
 
-###In Browsers###
+### In Browsers ###
 ```html
 <script type="text/javascript" src="inherit.js"></script>
 ```
@@ -19,24 +19,24 @@ Module has been tested in IE6+, Mozilla Firefox 3+, Chrome 5+, Safari 5+, Opera 
 
 Specification
 -------------
-###Creating a base class###
+### Creating a base class ###
 ````js
 Function inherit(Object props);
 ````
-###Creating a base class with static properties###
+### Creating a base class with static properties ###
 ````js
 Function inherit(
     Object props,
     Object staticProps);
 ````
-###Creating a derived class###
+### Creating a derived class ###
 ````js
 Function inherit(
     Function BaseClass,
     Object props,
     Object staticProps);
 ````
-###Creating a derived class with mixins###
+### Creating a derived class with mixins ###
 ````js
 Function inherit(
     [
