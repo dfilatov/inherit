@@ -1,4 +1,4 @@
 test:
-	./node_modules/.bin/nodeunit test
+	./node_modules/.bin/jest
 
 .PHONY: test

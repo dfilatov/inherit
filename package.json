@@ -17,7 +17,14 @@
     "license": "MIT",
     "dependencies": {},
     "devDependencies": {
-        "nodeunit" : "0.9.1"
+        "@types/jest": "^19.2.3",
+        "husky": "^0.13.4",
+        "jest": "^20.0.4"
+    },
+    "scripts": {
+        "prepush": "npm test",
+        "coverage": "jest --coverage",
+        "test": "jest"
     },
     "main" : "index",
     "enb" : {
