@@ -7,6 +7,11 @@ describe('Base', function () {
 });
 
 describe('Instance', function () {
+    test('Instance empty', function() {
+        var A = inherit();
+        expect(new A).toBeInstanceOf(A);
+    });
+
     test('Instance properties', function() {
         var A = inherit({
             __constructor : function(val) {
@@ -36,6 +41,37 @@ describe('Instance', function () {
         });
         
         expect(new B()).toBeInstanceOf(A);
+    });
+
+    test('Instance of self', function() {
+        var A = inherit({
+            method : function () {
+                return 'A';
+            }
+        });
+        var B = inherit({
+            propB : 'B'
+        });
+        var C = inherit.self([A, B, { propExtend: 'E' }], {
+            prop : 'C',
+            method : function () {
+                return {
+                    base : this.__base(),
+                    mix : [
+                        this.propB,
+                        this.propExtend,
+                    ],
+                };
+            }
+        });
+
+        expect(new C().method()).toEqual({
+            "base": "A",
+            "mix": [
+                "B",
+                "E",
+            ]
+        });
     });
 });
 
@@ -230,5 +266,95 @@ describe('Mocking', function () {
         var b = new B();
 
         expect(b.m()).toBe('CB');
+    });
+});
+
+describe("Use cases", function() {
+    test('Example from docs', function () {
+        // base "class"
+        var A = inherit(/** @lends A.prototype */{
+            __constructor : function(property) { // constructor
+                this.property = property;
+            },
+
+            getProperty : function() {
+                return this.property + ' of instanceA';
+            },
+
+            getType : function() {
+                return 'A';
+            },
+
+            getStaticProperty : function() {
+                return this.__self.staticProperty; // access to static
+            }
+        },/** @lends A */ {
+            staticProperty : 'staticA',
+
+            staticMethod : function() {
+                return this.staticProperty;
+            }
+        });
+
+        // inherited "class" from A
+        var B = inherit(A, /** @lends B.prototype */{
+            getProperty : function() { // overriding
+                return this.property + ' of instanceB';
+            },
+
+            getType : function() { // overriding + "super" call
+                return this.__base() + 'B';
+            }
+        }, /** @lends B */ {
+            staticMethod : function() { // static overriding + "super" call
+                return this.__base() + ' of staticB';
+            }
+        });
+
+        // mixin M
+        var M = inherit({
+            getMixedProperty : function() {
+                return 'mixed property';
+            }
+        });
+
+        // inherited "class" from A with mixin M
+        var C = inherit([A, M], {
+            getMixedProperty : function() {
+                return this.__base() + ' from C';
+            }
+        });
+
+        var instanceOfB = new B('property');
+
+        expect(instanceOfB.getProperty()).toBe('property of instanceB');
+        expect(instanceOfB.getType()).toBe('AB');
+        expect(B.staticMethod()).toBe('staticA of staticB');
+
+        var instanceOfC = new C();
+
+        expect(instanceOfC.getMixedProperty()).toBe('mixed property from C');
+        expect(instanceOfC.getType()).toBe('A');
+    });
+
+    test('Inherited functions with private variables', function () {
+        var A = inherit(function () {
+            var _privateVariable = 1;
+            this.method = function () {
+                return _privateVariable + 2;
+            };
+        });
+        var B = inherit(A, {
+            __constructor : function () {
+                this.__base.apply(this, arguments);
+                var _privateVariable = 9;
+                this.method = function () {
+                    return _privateVariable + 2;
+                };
+            }
+        });
+
+        expect(new A().method()).toBe(3);
+        expect(new B().method()).toBe(11);
     });
 });
