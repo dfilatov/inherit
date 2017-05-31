@@ -1,27 +1,43 @@
 {
-    "name" : "inherit",
-    "version" : "2.2.6",
-    "description" : "Inheritance module for Node.js and browsers",
-    "homepage" : "https://github.com/dfilatov/node-inherit",
-    "keywords" : ["class", "prototype", "inheritance", "mixins", "static"],
-    "author" : "Dmitry Filatov <dfilatov@yandex-team.ru>",
-    "contributors" : [{
-        "name" : "Dmitry Filatov",
-        "email" : "dfilatov@yandex-team.ru"
-    }, {
-        "name" : "Sergey Belov",
-        "email" : "peimei@ya.ru",
-        "url" : "http://github.com/arikon"
-    }],
-    "repository": "dfilatov/node-inherit",
+    "name": "inherit",
+    "version": "2.2.6",
+    "description": "Inheritance module for Node.js and browsers",
+    "homepage": "https://github.com/dfilatov/inherit",
+    "keywords": [
+        "class",
+        "prototype",
+        "inheritance",
+        "mixins",
+        "static"
+    ],
+    "author": "Dmitry Filatov <dfilatov@yandex-team.ru>",
+    "contributors": [
+        {
+            "name": "Dmitry Filatov",
+            "email": "dfilatov@yandex-team.ru"
+        },
+        {
+            "name": "Sergey Belov",
+            "email": "peimei@ya.ru",
+            "url": "http://github.com/arikon"
+        }
+    ],
+    "repository": "https://github.com/dfilatov/inherit.git",
     "license": "MIT",
     "dependencies": {},
     "devDependencies": {
-        "nodeunit" : "0.9.1"
+        "@types/jest": "^19.2.3",
+        "husky": "^0.13.4",
+        "jest": "^20.0.4"
     },
-    "main" : "index",
-    "enb" : {
-        "sources" : [
+    "scripts": {
+        "prepush": "npm test",
+        "coverage": "jest --coverage",
+        "test": "jest"
+    },
+    "main": "index",
+    "enb": {
+        "sources": [
             "lib/inherit.js"
         ]
     }
