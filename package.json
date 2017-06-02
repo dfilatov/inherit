@@ -17,9 +17,17 @@
     "license": "MIT",
     "dependencies": {},
     "devDependencies": {
-        "nodeunit" : "0.9.1"
+        "nyc": "^11.0.1",
+        "coveralls" : "^2.13.1",
+        "nodeunit" : "^0.11.1"
     },
     "main" : "index",
+    "scripts" : {
+        "clean" : "rm -r .nyc_output coverage",
+        "coverage" : "nyc --reporter=text --reporter=html nodeunit; echo; echo 'Open coverage/index.html file in your browser'",
+        "coveralls" : "nyc report --reporter=text-lcov | coveralls",
+        "test" : "nyc nodeunit"
+    },
     "enb" : {
         "sources" : [
             "lib/inherit.js"
