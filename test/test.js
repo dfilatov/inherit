@@ -260,3 +260,18 @@ exports.testBaseMocking = function(test) {
      test.equal(b.m(), 'CB');
      test.done();
 };
+
+exports.testGetterThis = function(test) {
+    var A = inherit({}),
+        B = inherit(A, {
+            get property() {
+                this.accessed = true;
+                return 123;
+            }
+        });
+
+    var b = new B();
+    test.equal(b.property, 123);
+    test.equal(b.accessed, true);
+    test.done();
+};
