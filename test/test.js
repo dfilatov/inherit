@@ -40,6 +40,28 @@ exports.testInstanceOfConstructorResult = function(test) {
     test.done();
 };
 
+exports.testInstanceOfSelf = function(test) {
+    var A = inherit({
+        method : function () {
+            return 'b';
+        }
+    });
+    var B = inherit({
+        propB : 'a'
+    });
+    var C = {
+        propC : 'z'
+    };
+    var D = inherit.self([A, B, C], {
+        method : function () {
+            return this.__base() + this.propB + this.propC;
+        }
+    });
+
+    test.equal(new D().method(), 'baz');
+    test.done();
+};
+
 exports.testSelf = function(test) {
     var A = inherit({}),
         B = inherit(A, {});
