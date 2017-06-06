@@ -260,3 +260,22 @@ exports.testBaseMocking = function(test) {
      test.equal(b.m(), 'CB');
      test.done();
 };
+
+exports.testBasePrototypeMocking = function(test) {
+    var A = inherit({
+            m : function() {
+                return 'A';
+            }
+        }),
+        B = inherit(A, {
+            m : function() {
+                return this.__base() + 'B';
+            }
+        });
+
+    var b = new B();
+    A.prototype.m = function() { return 'C'; };
+
+    test.equal(b.m(), 'CB');
+    test.done();
+};
