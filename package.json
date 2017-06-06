@@ -5,6 +5,7 @@
     "homepage" : "https://github.com/dfilatov/node-inherit",
     "keywords" : ["class", "prototype", "inheritance", "mixins", "static"],
     "author" : "Dmitry Filatov <dfilatov@yandex-team.ru>",
+    "license": "MIT",
     "contributors" : [{
         "name" : "Dmitry Filatov",
         "email" : "dfilatov@yandex-team.ru"
