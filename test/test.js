@@ -42,10 +42,10 @@ exports.testInstanceOfConstructorResult = function(test) {
 
 exports.testInstanceOfSelfSimple = function(test) {
     var Base = inherit({
-        prop : 'foo'
-    });
-    var A = inherit([Base]);
-    var actual = new A();
+            prop : 'foo'
+        }),
+        A = inherit([Base]),
+        actual = new A();
 
     test.equal(actual.prop, 'foo');
     test.done();
@@ -53,21 +53,21 @@ exports.testInstanceOfSelfSimple = function(test) {
 
 exports.testInstanceOfSelf = function(test) {
     var A = inherit({
-        method : function () {
-            return 'b';
-        }
-    });
-    var B = inherit({
-        propB : 'a'
-    });
-    var C = {
-        propC : 'z'
-    };
-    var D = inherit.self([A, B, C], {
-        method : function () {
-            return this.__base() + this.propB + this.propC;
-        }
-    });
+            method : function () {
+                return 'b';
+            }
+        }),
+        B = inherit({
+            propB : 'a'
+        }),
+        C = {
+            propC : 'z'
+        },
+        D = inherit.self([A, B, C], {
+            method : function () {
+                return this.__base() + this.propB + this.propC;
+            }
+        });
 
     test.equal(new D().method(), 'baz');
     test.done();
