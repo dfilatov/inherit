@@ -139,6 +139,7 @@ exports.testStaticInherit = function(test) {
 
     test.equal(typeof A.method2, 'undefined');
     test.equal(B.method1(), 'A');
+    test.equal(B.method2(), 'B');
     test.done();
 };
 
